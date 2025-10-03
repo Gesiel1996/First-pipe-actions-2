@@ -1,4 +1,4 @@
 {
-  "main": true,
-  "prod": true
+  "main": false,
+  "prod": false
 }
