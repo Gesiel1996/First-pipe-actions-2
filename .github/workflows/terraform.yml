@@ -50,7 +50,6 @@ jobs:
             run:  | 
               cd tf-infra && terraform init \
               -backend-config="bucket=${{ inputs.aws-state-file }}" \
-              -backend-config="key=${{ github.event.respository.name  }}" \
               -backend-config="region=${{  inputs.aws-region }}" \
 
           - name: terraform Validate
