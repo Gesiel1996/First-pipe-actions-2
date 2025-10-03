@@ -1,6 +1,5 @@
-resource "aws_bucket" "example" {
+resource "aws_s3_bucket" "meu-primeiro-GitHub-Actions" {
   bucket = var.bucket_name
-  acl    = "private"
 
   tags = {
     Name        = "My example bucket for GitHub Actions"
