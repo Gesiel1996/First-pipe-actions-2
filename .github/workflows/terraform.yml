@@ -70,7 +70,7 @@ jobs:
 
         
           - name: Terraform Plan
-            if: steps.read-destroy-config.outputs.destroy == 'true'
+            if: steps.read-destroy-config.outputs.destroy != 'true'
             id: terraform-plan
             run:  cd tf-infra &&
               terraform workspace select ${{ inputs.environment }} || terraform workspace new  ${{ inputs.environment }} &&
@@ -78,7 +78,7 @@ jobs:
 
           
           - name: Terraform Apply
-            if: steps.read-destroy-config.outputs.destroy == 'true'
+            if: steps.read-destroy-config.outputs.destroy != 'true'
             id: terraform-apply 
             run:  cd tf-infra &&
               terraform workspace select ${{ inputs.environment }} || terraform workspace new  ${{ inputs.environment }} &&
