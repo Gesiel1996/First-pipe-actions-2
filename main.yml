@@ -1,9 +1,15 @@
 name: "Dev deploy recursos"
 
-on: 
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "develop" branch
   push:
-   branches:
-     - main 
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [  "main", "develop"  ]
 
 
 # Permission can be added at job level or workflow level    
