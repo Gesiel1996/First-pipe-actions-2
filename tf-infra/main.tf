@@ -1,5 +1,5 @@
 resource "aws_bucket" "example" {
-  bucket = "${env}-var.bucket_name"
+  bucket = var.bucket_name
   acl    = "private"
 
   tags = {
