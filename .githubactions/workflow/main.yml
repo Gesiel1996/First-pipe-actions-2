@@ -1,0 +1,24 @@
+name: "Dev deploy recursos"
+
+on: 
+  push:
+   branches:
+     - develop
+     - main 
+
+
+# Permission can be added at job level or workflow level    
+permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read    # This is required for actions/checkout
+
+jobs:
+  environment: "dev"
+  aws-assume-role-arn: "arn:aws:iam::473557429298:role/GitHubAction-AssumeRoleWithAction"
+  aws-state-file: "gesiel1996-hithub-actions"
+  aws-region: "sa-east-1"
+  aws-lock-dynamo-table: "gesiel1996-sa-east-1-terraform-lock"
+          
+
+
+
