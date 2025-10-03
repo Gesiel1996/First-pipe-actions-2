@@ -6,9 +6,9 @@ name: "Main deploy recursos"
 on:
   # Triggers the workflow on push or pull request events but only for the "develop" branch
   push:
-    branches: [ "main", "develop" ]
+    branches: [ "main", "prod" ]
   pull_request:
-    branches: [  "main", "develop"  ]
+    branches: [  "main", "prod"  ]
 
 
 # Permission can be added at job level or workflow level    
@@ -20,7 +20,7 @@ jobs:
   terraform:
      uses: ./.github/workflows/terraform.yml
      with:    
-       environment: "main"
+       environment: "prod"
        aws-assume-role-arn: "arn:aws:iam::473557429298:role/GitHubAction-AssumeRoleWithAction"
        aws-state-file: "gesiel1996-hithub-actions"
        aws-region: "us-east-2"
