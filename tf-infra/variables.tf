@@ -1,3 +1,3 @@
-  variable "bucket_name"{} 
-  variable "acl" {}
-  variable "env" {}
+  variable "bucket_name" {
+  type = string
+}
