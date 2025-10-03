@@ -52,7 +52,7 @@ jobs:
               -backend-config="bucket=${{ inputs.aws-state-file }}" \
               -backend-config="key=${{ github.event.respository.name  }}" \
               -backend-config="region=${{  inputs.aws-region }}" \
-              -backend-config="dynamo-table=${{  inputs.aws-lock-dynamo-table }}" \
+              #-backend-config="dynamo-table=${{  inputs.aws-lock-dynamo-table }}" \
 
           - name: terraform Validate
             run:  terraform Validate
