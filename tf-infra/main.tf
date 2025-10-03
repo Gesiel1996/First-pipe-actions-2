@@ -4,7 +4,7 @@ resource "aws_bucket" "example" {
 
   tags = {
     Name        = "My example bucket for GitHub Actions"
-    Environment = "Dev/prd"
+    Environment = "main"
   }
 }
 
