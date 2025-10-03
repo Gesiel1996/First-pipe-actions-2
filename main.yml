@@ -3,7 +3,6 @@ name: "Dev deploy recursos"
 on: 
   push:
    branches:
-     - develop
      - main 
 
 
