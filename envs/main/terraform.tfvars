@@ -1,2 +1,2 @@
 bucket_name="teste"
-env="prd"
+env="main"
