@@ -46,6 +46,12 @@ jobs:
               role-session-name: GitHUb_actions
               aws-region: ${{ inputs.aws-region }}
 
+          - name: Read destroy configuration
+            id: read-destroy-config
+            run: |
+              DESTROY="$(jq -r '.${{ inputs.environment }}' ./infra/destroy_config.json)"
+              echo "destroy=$(echo $DESTROY)" >> $GITHUB_OUTPUT 
+
           - name: Terraform Init
             run:  | 
               cd tf-infra && terraform init \
@@ -55,7 +61,15 @@ jobs:
           - name: terraform Validate
             run:  terraform validate
 
+          - name: Terraform Destroy
+            if: steps.read-destroy-config.outputs.destroy == 'true'
+            id: terraform-destroy
+            run: cd infra &&
+              terraform workspace select ${{ inputs.environment }} || terraform workspace new ${{ inputs.environment }} &&
+             terraform destroy -var-file="./envs/${{ inputs.environment }}/terraform.tfvars" -auto-approve  
+
           - name: Terraform Plan
+            if: steps.read-destroy-config.outputs.destroy == 'true'
             id: terraform-plan
             run:  cd tf-infra &&
               terraform workspace select ${{ inputs.environment }} || terraform workspace new  ${{ inputs.environment }} &&
@@ -63,6 +77,7 @@ jobs:
 
           
           - name: Terraform Apply
+            if: steps.read-destroy-config.outputs.destroy == 'true'
             id: terraform-apply 
             run:  cd tf-infra &&
               terraform workspace select ${{ inputs.environment }} || terraform workspace new  ${{ inputs.environment }} &&
